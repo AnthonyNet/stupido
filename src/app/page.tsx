@@ -1,9 +1,3 @@
-import { UserButton } from "@clerk/nextjs";
+import Index from "./[...page]/page";
 
-export default function Home() {
-  return (
-    <div className="h-screen">
-      <UserButton afterSignOutUrl="/" />
-    </div>
-  )
-}
+export default Index;
