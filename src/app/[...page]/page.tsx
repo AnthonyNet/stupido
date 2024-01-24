@@ -51,12 +51,34 @@ export default async function Page(props: PageProps) {
 			// Convert the result to a promise
 			.toPromise();
 
+		const footerContent = await builder
+			// Get the page content from Builder with the specified options
+			.get("footer", {
+				userAttributes: {
+					// Use the page path specified in the URL to fetch the content
+					urlPath: "/" + (props?.params?.page?.join("/") || ""),
+				},
+				// Set prerender to false to prevent infinite rendering loops
+				prerender: false,
+			})
+			// Convert the result to a promise
+			.toPromise();
+
+
 	return (
 		<>
 			{/* Render the Builder page */}
 			<RenderBuilderContent
 				model="header"
 				content={headerContent}
+			/>
+			<RenderBuilderContent
+				model="page"
+				content={headerContent}
+			/>
+			<RenderBuilderContent
+				model="footer"
+				content={footerContent}
 			/>
 		</>
 	);
